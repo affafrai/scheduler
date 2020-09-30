@@ -28,7 +28,12 @@
     }
 
     &--full {
-      opacity: $inactive-opacity;
+      // opacity: $inactive-opacity;
+      
+      &:hover {
+        opacity: 0.15;
+        background-color:#ee5253;
+      }
     }
   }
 }
