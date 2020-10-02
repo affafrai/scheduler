@@ -43,8 +43,6 @@ const appointments = [
   }
 ];
 
-
-
 const setName = name => console.log(name);
 setName("affaf");
 
