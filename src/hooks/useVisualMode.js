@@ -4,15 +4,9 @@ export default function useVisualMode(initial) {
   // transition in day 4 compass
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]); // initializing our history as an array with the first mode that gets passed to useVisualMode.
-  console.log("initial =", initial)
-
-  console.log("mode now =", mode)
-  console.log("history now =", history)
-
+  
   function transition (mode, replace = false) {
-      setMode(mode)
-      console.log("mode after transition", mode)
-        
+      setMode(mode)        
       if (replace === false) {
       setHistory([...history,mode])
       } else {
