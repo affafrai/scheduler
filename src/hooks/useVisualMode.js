@@ -9,34 +9,28 @@ export default function useVisualMode(initial) {
   console.log("mode now =", mode)
   console.log("history now =", history)
 
-  function transition (mode) {
-    setMode(mode)
-    console.log("mode after transition", mode)
-    setHistory([...history,mode])
+  function transition (mode, replace = false) {
+      setMode(mode)
+      console.log("mode after transition", mode)
+        
+      if (replace === false) {
+      setHistory([...history,mode])
+      } else {
+        history.pop()
+        setHistory([...history,mode])
+      }
   }
 
   function back() {
     if(history.length <= 1) {
       console.log("error length >= 1", history.length)
-      
     }
       else {
-        console.log("length before pop",history.length)
-        console.log("history before pop",history)
         history.pop()
-        console.log("history after pop",history)
-        // transition(history[history.length-1])
         setMode(history[history.length-1])
       }
-
-     
-    
-    
-    // else {
-    //   transition(history[history.length-1])
-    // console.log("mode after back out if", mode)
-    // }
   }
+
   return { mode, transition, back };
 }
 
