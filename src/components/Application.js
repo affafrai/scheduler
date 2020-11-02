@@ -23,16 +23,28 @@ export default function Application(props) {
     console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
+      interview: { ...interview },
+
     };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
     setState({
-      ...state,
-      appointments
-    });
+          ...state,
+          appointments
+        });
+    // return axios.put(`http://localhost:8001/api/appointments/${id}`,{interview})
+
+    // .then((res)=>{
+    //   setState({
+    //     ...state,
+    //     appointments
+    //   });
+      return axios.put(`http://localhost:8001/api/appointments/${id}`,{interview})
+   
+
 
   }
 
