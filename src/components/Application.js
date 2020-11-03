@@ -8,10 +8,7 @@ import {getInterview} from "../helpers/selectors"
 import {getInterviewersForDay} from "../helpers/selectors"
 import useApplicationData from "hooks/useApplicationData"
 
-export default function Application(props) {
-  // console.log("props",props)
-  // console.log("props",props.days)
-
+export default function Application() {
   const {
     state,
     setDay,
@@ -19,7 +16,6 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
   // console.log("state.spots",state.spots)
-
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(
