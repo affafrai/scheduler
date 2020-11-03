@@ -9,7 +9,7 @@ export default function InterviewerList(props) {
   const interviewers = props.interviewers;
   const returnInterviewers = interviewers.map(interviewer => {
     const {id, name, avatar} = interviewer;
-    const isSelected = id === props.interviewer;
+    const isSelected = id === props.interviewer.id;
     return (
      
           <InterviewerListItem 
