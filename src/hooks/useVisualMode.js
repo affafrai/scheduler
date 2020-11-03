@@ -2,16 +2,20 @@ import {useState} from "react";
 
 export default function useVisualMode(initial) {
   // transition in day 4 compass
-  const [mode, setMode] = useState(initial);
+  // const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]); // initializing our history as an array with the first mode that gets passed to useVisualMode.
   
   function transition (mode, replace = false) {
-      setMode(mode)        
+      // setMode(mode)        
       if (replace === false) {
-      setHistory([...history,mode])
-      } else {
-        history.pop()
-        setHistory([...history,mode])
+        setHistory(history => ([...history, mode]))    
+        } else {
+        // console.log("history in transition before pop",history)
+        // history.pop()
+        // console.log("history in transition after pop",history)
+        setHistory(history => [...history.slice(0,-1),mode])
+        // console.log("history in transition after set history",history)
+
       }
   }
 
@@ -20,11 +24,14 @@ export default function useVisualMode(initial) {
       console.log("error length >= 1", history.length)
     }
       else {
-        history.pop()
-        setMode(history[history.length-1])
+        console.log("history in back before pop",history)
+
+        // history.pop()
+        console.log("history in back after pop",history)
+        setHistory(history => history.slice(0,-1))
       }
   }
 
-  return { mode, transition, back };
+  return { mode: history[history.length-1], transition, back };
 }
 

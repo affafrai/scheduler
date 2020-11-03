@@ -29,11 +29,14 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-          ...state,
-          appointments
+   
+    return axios.put(`/api/appointments/${id}`,{interview})
+    .then(()=>{
+      setState({
+      ...state,
+      appointments
     });
-    return axios.put(`http://localhost:8001/api/appointments/${id}`,{interview})
+    return true;})
   }
 
   function cancelInterview(id) {
@@ -46,12 +49,16 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-          ...state,
-          appointments
-    });
+    
 
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    return axios.delete(`/api/appointments/${id}`)
+    .then(()=>{
+      setState({
+      ...state,
+      appointments
+    });
+    return true;
+})
  
   }
 
@@ -76,9 +83,9 @@ export default function Application(props) {
   useEffect(() => {
     console.log("hello use effect")
     Promise.all([
-      axios.get("http://localhost:8001/api/days"),
-      axios.get("http://localhost:8001/api/appointments"),
-      axios.get("http://localhost:8001/api/interviewers")
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers")
     ]).then((all) => {
       console.log(state.days)
       setState(prev =>({...prev, days:all[0].data, appointments:all[1].data, interviewers:all[2].data}))

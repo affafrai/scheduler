@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+
 import InterviewerListItem from "components/InterviewerListItem";
 import "components/InterviewerList.scss";
 
@@ -10,7 +12,8 @@ export default function InterviewerList(props) {
   const returnInterviewers = interviewers.map(interviewer => {
     const {id, name, avatar} = interviewer;
     console.log(props.interviewer, interviewer)
-    const isSelected = id === props.interviewer ;
+    // const isSelected = id === props.interviewer.id;
+    const isSelected = id === props.interviewer;
 
     return (
      
@@ -30,3 +33,8 @@ export default function InterviewerList(props) {
       </section>
       )
 }
+// Type Checking with Prop Types
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};
+
