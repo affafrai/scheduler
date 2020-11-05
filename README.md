@@ -21,3 +21,15 @@ npm test
 ```sh
 npm run storybook
 ```
+
+
+
+## Screen Shots
+
+!["screenshot of schedular home on desktop"](https://github.com/affafrai/scheduler/blob/master/docs/schedule-app-home.png?raw=true)
+!["screenshot of schedular form on desktop"](https://github.com/affafrai/scheduler/blob/master/docs/appointment-form.png?raw=true)
+!["screenshot of schedular home on tablets or mobiles"](https://github.com/affafrai/scheduler/blob/master/docs/appointment-form.png?raw=true)
+!["screenshot of schedular form on tablets or mobiles"](https://github.com/affafrai/scheduler/blob/master/docs/appointment-form-smallscreen.png?raw=true)
+
+
+
