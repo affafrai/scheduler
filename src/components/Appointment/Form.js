@@ -19,7 +19,6 @@ export default function Form(props) {
     props.onSave(name, interviewer)
   }
   const changeName = (event) => {
-    console.log(event.target.value)
     setName(event.target.value)
   }
   const cancel = () => {
@@ -39,8 +38,6 @@ export default function Form(props) {
 
   return(
     <main className="appointment__card appointment__card--create">
-      {  console.log(name,interviewer)
-}
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
         <input

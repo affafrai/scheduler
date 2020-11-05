@@ -21,14 +21,12 @@ const ERROR_DELETE ="ERROR_DELETE";
 const ERROR_SAVE ="ERROR_SAVE";
 
 export default function Appointment(props) {
-  console.log("props.interview = ", props.interview)
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
 
   );
 
   function save(name, interviewer) {
-    // console.log("new interviewer ",interviewer)
     const interview = {
       student: name,
       interviewer
@@ -49,7 +47,7 @@ export default function Appointment(props) {
   }
 
     return(
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
@@ -99,18 +97,13 @@ export default function Appointment(props) {
         message="could not delete appointment"
         onClose={ () => transition(SHOW)}
         />
-      
       )}
       {mode === ERROR_SAVE && (
         <Error
         message="could not save appointment"
         onClose={ () => back()}
         />
-      
       )}
-
-
     </article>
-    
   )
 };

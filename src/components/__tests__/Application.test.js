@@ -1,24 +1,45 @@
-/*
-  We are rendering `<Application />` down below, so we need React.createElement
-*/
+
 import React from "react";
-
-/*
-  We import our helper functions from the react-testing-library
-  The render function allows us to render Components
-*/
-import { render, cleanup } from "@testing-library/react";
-
-/*
-  We import the component that we are testing
-*/
+// import axios from "axios"
+import { queryByText,render, cleanup, fireEvent,getByPlaceholderText, waitForElement,getByAltText, prettyDOM, getByText, getAllByTestId} from "@testing-library/react";
 import Application from "components/Application";
-
 afterEach(cleanup);
 
-/*
-  A test that renders a React Component
-*/
-it("renders without crashing", () => {
-  render(<Application />);
-});
+describe("Application",() => {
+  it("changes the schedule when a new day is selected", async () => {
+
+    const { getByText } = render(<Application />);
+  
+    await waitForElement(() => getByText("Monday"))
+
+    fireEvent.click(getByText("Tuesday"));
+
+    expect(getByText("Leopold Silvers")).toBeInTheDocument();
+  });
+
+  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+    const { container} = render(<Application />);
+  
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+  
+    const appointments = getAllByTestId(container, "appointment");
+    // console.log(prettyDOM(appointments));
+    const appointment = appointments[0];
+
+    fireEvent.click(getByAltText(appointment, "Add"));
+
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+
+    fireEvent.click(getByText(appointment, "Save"));
+
+    expect(getByText(appointment, "Saving...")).toBeInTheDocument();
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    );
+
+  });
+})
