@@ -15,7 +15,6 @@ export default function Application() {
     bookInterview,
     cancelInterview
   } = useApplicationData();
-  // console.log("state.spots",state.spots)
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(

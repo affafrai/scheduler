@@ -8,7 +8,6 @@ export default function DayList(props) {
     const {id,name,spots} = day
     const isSelected = name === props.day;
     const noSpots = spots === 0 ;
-
     return( 
       <DayListItem 
         key={id}
